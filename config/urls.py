@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from todo.views import home
+from todo.views import home, todo_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home', ),
+    path('todo/<int:id>/', todo_detail, name='todo_detail', ),
 ]

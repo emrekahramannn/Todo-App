@@ -1,4 +1,35 @@
 {% extends 'core/base.html' %}
 
 {% block container %}
+    <div class="row my-5">
+        <div class="col-sm-10 offset-sm-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-dark">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/" class="text-dark">Kategoriler</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page">{{ todo.title }}</li>
+                </ol>
+            </nav>
+
+            <div class="my-3">
+                <div class="d-flex">
+                    <h2 class="me-auto">{{ todo.title }}</h2>
+                    <span class="h6">{{ todo.category }}</span>
+                </div>
+                <div class="lh-base">
+                    <p class="lead">{{ todo.content }}</p>
+                </div>
+                <div class="d-flex mt-5">
+                    <ul class="list-inline">
+                        {% for tag in todo.tag.all %}
+                            <li class="list-inline-item">
+                                <a href="#" class="badge text-bg-dark text-decoration-none text-light py-2">#{{ tag.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <span class="ms-auto">{{ todo.created_at | date:'d/m/Y H:m' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock container %}
