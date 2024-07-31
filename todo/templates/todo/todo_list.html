@@ -3,11 +3,17 @@
 {% block container %}
     <div class="row my-5">
         <div class="col-sm-10 offset-sm-1">
-            <h2 class="mb-3">Yapılacaklar ({{ todos.count }})</h2>
+            {% if category %}
+                <h2 class="mb-3">{{ category.title.capitalize }} ({{ todos.count }})</h2>
+            {% elif tag %}
+                <h2 class="mb-3">{{ tag.title.capitalize }} ({{ todos.count }})</h2>
+            {% else %}
+                <h2 class="mb-3">Yapılacaklar ({{ todos.count }})</h2>
+            {% endif %}
             <ul class="list-group">
                 {% for todo in todos %}
                     <li class="list-group-item list-group-item-action d-flex">
-                        <a href="todo/{{ todo.id }}" class="me-auto text-decoration-none text-dark stretched-link">{{ todo.title }}</a>
+                        <a href="{{ todo.get_absolute_url }}" class="me-auto text-decoration-none text-dark stretched-link">{{ todo.title }}</a>
                         <span class="ms-auto badge rounded-pill text-bg-dark">{{ todo.category }}</span>
                     </li>
                 {% endfor %}

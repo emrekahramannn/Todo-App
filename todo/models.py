@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from autoslug import AutoSlugField
 
@@ -12,6 +13,14 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse(
+            'category',
+            kwargs={
+                'category_slug': self.slug,
+            }
+        )
+
 
 
 class Tag(models.Model):
@@ -21,6 +30,14 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse(
+            'tag',
+            kwargs={
+                'tag_slug': self.slug,
+            }
+        )
 
 class Todo(models.Model):
     # id
@@ -35,3 +52,12 @@ class Todo(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse(
+            'todo_detail',
+            kwargs={
+                'category_slug': self.category.slug,
+                'id': self.id
+            }
+        )

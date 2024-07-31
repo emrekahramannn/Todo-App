@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-dark">Anasayfa</a></li>
-                    <li class="breadcrumb-item"><a href="/" class="text-dark">Kategoriler</a></li>
+                    <li class="breadcrumb-item"><a href="{{ todo.category.get_absolute_url }}" class="text-dark">Kategoriler</a></li>
                     <li class="breadcrumb-item active text-muted" aria-current="page">{{ todo.title }}</li>
                 </ol>
             </nav>
@@ -23,7 +23,7 @@
                     <ul class="list-inline">
                         {% for tag in todo.tag.all %}
                             <li class="list-inline-item">
-                                <a href="#" class="badge text-bg-dark text-decoration-none text-light py-2">#{{ tag.title }}</a>
+                                <a href="{{ tag.get_absolute_url }}" class="badge text-bg-dark text-decoration-none text-light py-2">#{{ tag.title }}</a>
                             </li>
                         {% endfor %}
                     </ul>

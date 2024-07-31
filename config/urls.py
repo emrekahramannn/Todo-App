@@ -16,12 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from todo.views import home, todo_detail
+from todo.views import home, todo_detail, category, tag
 from config.views import logout_view
 
 urlpatterns = [
+    # admin
     path('admin/', admin.site.urls),
+    # app
     path('', home, name='home', ),
-    path('todo/<int:id>/', todo_detail, name='todo_detail', ),
+    path('category/<slug:category_slug>/', category, name='category', ),
+    path('category/<slug:category_slug>/todo/<int:id>/', todo_detail, name='todo_detail', ),
+    path('tag/<slug:tag_slug>/', tag, name='tag', ),
+    # logout
     path('logout', logout_view, name='logout_view', ),
 ]
