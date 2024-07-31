@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <a href="{% url 'home' %}" class="navbar-brand fw-bold">
+            TODO
+            <i class="ms-1 fa-solid fa-check-double"></i>
+        </a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mobile">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-md-3" id="mobile">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="{% url 'home' %}" class="nav-link {% if request.path == '/'%}active{% endif %}">Anasayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/categories/" class="nav-link {% if request.path == '/about-us/'%}active{% endif %}">Kategoriler</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout/" class="btn btn-light text-dark rounded nav-link {% if request.path == '/logout/'%}active{% endif %}">Çıkış</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
