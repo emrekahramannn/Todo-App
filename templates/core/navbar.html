@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-3">
     <div class="container">
         <a href="{% url 'home' %}" class="navbar-brand fw-bold">
             TODO
@@ -16,11 +16,16 @@
                 <li class="nav-item">
                     <a href="{% url 'home' %}" class="nav-link {% if request.path == '/'%}active{% endif %}">Anasayfa</a>
                 </li>
-                <li class="nav-item">
-                    <a href="/categories/" class="nav-link {% if request.path == '/about-us/'%}active{% endif %}">Kategoriler</a>
+                <li class="nav-item dropdown">
+                    <a href="/categories/" class="dropdown-toggle nav-link {% if request.path == '/about-us/'%}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">Kategoriler</a>
+                    <ul class="dropdown-menu">
+                        {% for category in categories %}
+                            <li><a class="dropdown-item" href="#">{{ category.title }}</a></li>
+                        {% endfor %}
+                    </ul>
                 </li>
-                <li class="nav-item rounded-pill p-0 m-0">
-                    <a href="/logout/" class="fw-bold btn bg-light text-dark nav-link {% if request.path == '/logout/'%}active{% endif %}">Çıkış</a>
+                <li class="nav-item rounded-pill ms-3">
+                    <a href="{% url 'logout_view' %}" class="fw-bold btn bg-light text-dark nav-link">Çıkış</a>
                 </li>
             </ul>
         </div>

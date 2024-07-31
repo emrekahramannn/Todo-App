@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from todo.views import home, todo_detail
+from config.views import logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home', ),
     path('todo/<int:id>/', todo_detail, name='todo_detail', ),
+    path('logout', logout_view, name='logout_view', ),
 ]
