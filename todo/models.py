@@ -13,6 +13,11 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def update_status(self):
+        # Update the category status based on its todos
+        self.is_active = self.todos.filter(is_active=True).exists()
+        self.save()
+    
     def get_absolute_url(self):
         return reverse(
             'category',
@@ -52,6 +57,13 @@ class Todo(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        # Call the parent class's save method
+        super().save(*args, **kwargs)
+
+        if self.category:
+            self.category.update_status()
 
     def get_absolute_url(self):
         return reverse(
